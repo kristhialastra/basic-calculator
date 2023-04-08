@@ -56,7 +56,6 @@
 	</div>
   
   <script>
-    //javescript was seen from youtube video (https://youtu.be/j59qQ7YWLxw) and other errors was fixed by Kakashi :) 
 
 class Calculator{
 	constructor(previousTextElement, currentTextElement) {
@@ -124,7 +123,7 @@ getDisplayNumber(number) {
 	const arr = number.split('.')
 	
 	for(let i in arr[0]){
-		if(Number(i) !== 0 && i%3 === 0) str += ','
+		if(Number(i) !== 0 && i%3 === 0) str += ''
 		str += arr[0][i]
 	}
 	
