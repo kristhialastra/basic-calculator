@@ -6,20 +6,23 @@
     
 
     <title>Calculator</title>
-    <link href="css/calcu.css" rel="stylesheet">
+    <link href="calculator.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Sriracha&family=Varela+Round&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="calculator.css">
+   
 </head>
 
-<body data-spy="scroll" data-target=".navbar-collapse">
+
 
 <!-- header section -->
 <video class="video-bg" autoplay muted loop>
-		<source src="lv_0_20230404135021.mp4">
-	</video>
+  <source src="lv_0_20230403235316.mp4">
+</video>
 
+<div class="cursor site-wide">
+  <div class="pointer"></div>
+</div>
 
 
 
@@ -34,29 +37,61 @@
             <div data-previous class="previous"></div>
             <div data-current class="current"></div>
         </div>
-        <button data-clear class="span-two" class="bp">Clear</button>
-        <button data-delete class="bp">Del</button>
-        <button data-operation class="bp">÷</button>
-        <button data-number class="bw">1</button>
-        <button data-number class="bw">2</button>
-        <button data-number class="bw">3</button>
-        <button data-operation class="bp">*</button>
-        <button data-number class="bw">4</button>
-        <button data-number class="bw">5</button>
-        <button data-number class="bw">6</button>
-        <button data-operation class="bp">+</button>
-        <button data-number class="bw">7</button>
-        <button data-number class="bw">8</button>
-        <button data-number class="bw">9</button>
-        <button data-operation class="bp">-</button>
-        <button data-number class="bw">.</button>
-        <button data-number class="bw">0</button>
-        <button data-equals class="span-two" class="bp">=</button>
+        <button onmousedown="sound1.play()" data-clear class="span-two" class="bp">Clear</button>
+        <button onmousedown="sound1.play()" data-delete class="bp">Del</button>
+        <button onmousedown="sound1.play()" data-operation class="bp">÷</button>
+        <button onmousedown="sound1.play()" data-number class="bw">1</button>
+        <button onmousedown="sound1.play()" data-number class="bw">2</button>
+        <button onmousedown="sound1.play()" data-number class="bw">3</button>
+        <button onmousedown="sound1.play()" data-operation class="bp">*</button>
+        <button onmousedown="sound1.play()" data-number class="bw">4</button>
+        <button onmousedown="sound1.play()" data-number class="bw">5</button>
+        <button onmousedown="sound1.play()" data-number class="bw">6</button>
+        <button onmousedown="sound1.play()" data-operation class="bp">+</button>
+        <button onmousedown="sound1.play()" data-number class="bw">7</button>
+        <button onmousedown="sound1.play()" data-number class="bw">8</button>
+        <button onmousedown="sound1.play()" data-number class="bw">9</button>
+        <button onmousedown="sound1.play()" data-operation class="bp">-</button>
+        <button onmousedown="sound1.play()" data-number class="bw">.</button>
+        <button onmousedown="sound1.play()" data-number class="bw">0</button>
+        <button onmousedown="sound1.play()" data-equals class="span-two" class="bp">=</button>
     </div>
 	</div>
+
+  <script type="text/javascript">
+    const cursor = document.querySelector(".cursor");
+    var timeout;
+
+    //follow cursor on mousemove
+    document.addEventListener("mousemove", (e) => {
+      let x = e.pageX;
+      let y = e.pageY;
+
+      cursor.style.top = y + "px";
+      cursor.style.left = x + "px";
+      cursor.style.display = "block";
+
+      //cursor effects when mouse stopped
+      function mouseStopped(){
+        cursor.style.display = "none";
+      }
+      clearTimeout(timeout);
+      timeout = setTimeout(mouseStopped, 1000);
+    });
+
+    //cursor effects when mouseout
+    document.addEventListener("mouseout", () => {
+      cursor.style.display = "none";
+    });
+    </script>
+
+  <script>
+  var sound1 = new Audio();
+  sound1.src = "./lv_0_20230408210338.mp3"
+  </script>
   
   <script>
-
+    
 class Calculator{
 	constructor(previousTextElement, currentTextElement) {
 		this.previousTextElement = previousTextElement
@@ -189,6 +224,8 @@ deleteButton.addEventListener('click', button => {
   calculator.updateDisplay()
 })
   </script>
+
+  
 </body>
 </html>
 
